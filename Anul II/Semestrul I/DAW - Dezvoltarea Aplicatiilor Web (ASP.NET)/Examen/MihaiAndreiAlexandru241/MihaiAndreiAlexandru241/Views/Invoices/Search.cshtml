@@ -1,0 +1,32 @@
+﻿@model MihaiAndreiAlexandru241.Models.Invoice
+
+<h2>Cautare facturi </h2>
+<br />
+
+@* Motorul de cautare *@
+<form method="GET">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="cauta card" name="search" value="@ViewBag.SearchString">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </div>
+</form>
+
+@foreach (var factura in ViewBag.Facturi)
+{
+    <div class="card">
+        <p>@factura.Titlu</p>
+        <p>@factura.Valoare</p>
+        <p>@factura.DataScadenta</p>
+        <p>@factura.ClientId</p>
+        <p>@factura.Brand.Nume</p>
+        <a class="btn btn-success" href="/Invoices/Show/@factura.Id">Vezi factura!</a>
+
+    </div>
+
+    <br />
+    <br />
+
+    <br />
+    <br />
+}
+

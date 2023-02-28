@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P3</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body {
+            background-color: blanchedalmond;
+        }
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="check"/>
+    <label for="check">css</label>
+    <script>
+        const initialColor = "blanchedalmond";
+        const input = document.getElementById("check");
+        const body = document.getElementsByTagName("body")[0];
+
+        const getRandomColor = () => {
+            const letters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 
+            'b', 'c', 'd', 'e', 'f'];
+            let color = "#";
+            for(let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        const pressedLetters = [];
+        let id;
+
+        if(localStorage.getItem("color")) {
+            body.style.backgroundColor = localStorage.getItem("color")
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if(e.key >= "a" && e.key <= "z" && !pressedLetters.includes(e.key) && !input.checked) {
+                if(id) {
+                    clearInterval(id);
+                }
+                pressedLetters.push(e.key);
+                id = setInterval(() => {
+                    const newColor = getRandomColor();
+                    body.style.backgroundColor = newColor;
+                    localStorage.setItem("color", newColor);
+                }, 2000)
+            }
+        })
+
+        input.addEventListener("change", (e) => {
+            if(e.target.checked) {
+                clearInterval(id);
+                body.style.backgroundColor = initialColor;
+            }
+        })
+    </script>
+</body>
+</html>

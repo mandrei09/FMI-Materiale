@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2</title>
+    <style>
+        .patrat {
+            width: 10px;
+            height: 10px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const body = document.getElementsByTagName("body")[0];
+        const currentHour = new Date().getHours();
+        const colors = ["lime", "salmon", "lightblue", "black", "magenta"];
+
+        for(let i = 0; i < currentHour; i++) {
+            const newDiv = document.createElement("div");
+            newDiv.classList.add("patrat");
+            newDiv.style.backgroundColor = colors[Math.floor(Math.random() * 5)];
+            newDiv.style.display = "inline-block"
+            newDiv.style.position = "relative";
+            newDiv.style.top = 0;
+            body.appendChild(newDiv)
+        }
+
+        const divs = document.getElementsByTagName("div");
+        for(let d of divs) {
+            d.addEventListener("click", (e) => {
+                d.style.top = `${parseInt(d.style.top) + 5}px`;
+                e.stopPropagation();
+            })
+        }
+
+        document.addEventListener("click", () => {
+            for(let d of divs) {
+                d.style.top = 0;
+            }
+        })
+    </script>
+</body>
+</html>

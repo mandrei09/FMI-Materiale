@@ -1,0 +1,26 @@
+﻿@model MihaiAndreiAlexandru241.Models.Invoice
+
+<h2>Afisare Facturi</h2>
+<br />
+@if (ViewBag.Message != null)
+{
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+
+<a href="/Invoices/New">Adaugare factura</a>
+</br>
+
+
+@foreach (var factura in ViewBag.facturi)
+{
+    <div class="card">
+        <p>@factura.Titlu</p>
+        <p>@factura.Valoare lei</p>
+        <p>@factura.DataScadenta</p>
+        <p>@factura.ClientId
+        <a class="btn btn-success" href="/Invoices/Show/@factura.Id">Vezi factura!</a>
+    </div>
+
+    <br />
+    <br />
+}

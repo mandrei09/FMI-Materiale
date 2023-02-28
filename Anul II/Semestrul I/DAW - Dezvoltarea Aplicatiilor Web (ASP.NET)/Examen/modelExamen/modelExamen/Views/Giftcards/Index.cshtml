@@ -1,0 +1,29 @@
+﻿@model modelExamen.Models.Giftcard
+
+<h2>Afisare carduri cadou</h2>
+<br />
+@if (ViewBag.Message != null)
+{
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+
+<a href="/Giftcards/New">Adaugare card</a>
+</br>
+
+
+@foreach (var giftcard in ViewBag.Cards)
+{
+    <div class="card">
+        <p>@giftcard.Denumire</p>
+        <p>@giftcard.Descriere</p>
+        <p>@giftcard.DataExp</p>
+        <p>@giftcard.Procent</p>
+        <p>@giftcard.Brand.Nume</p>
+        <a class="btn btn-success" href="/GiftCards/Show/@giftcard.Id">Vezi card</a>
+
+    </div>
+
+    <br />
+    <br />
+}
+

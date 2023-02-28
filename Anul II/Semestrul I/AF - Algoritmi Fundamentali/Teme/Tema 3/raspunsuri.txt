@@ -1,0 +1,39 @@
+1)  Am implementat problema cu graf rezidual. 
+    Fluxul maxim se calculeaza insumand capacitatile minime, la fiecare pas, cat timp mai avem lanturi existente.
+    Actualizarile se fac pe fiecare componenta, in sens opus c.min se scade, altfel se aduna.
+2)  -
+3)  
+4)  Initial se cauta un nod de start (din care doar pleaca un arc), sau numarul muchiilor care intra < numarul muchiilor care ies.
+    Dupa ce am gasit nodul de start, parcurgem toate nodurile adiacente lui start (celalalt element din pereche pentru perechile unde exista "start").
+    Adaugam adiacentele in lista de rezultat, apoi modificam nodul de start. 
+    Astfel, deoarece scoatem cate un nod din listele de adiacenta dupa ce il vizitam, vom obtine un lant eulerian.
+5)  Am folosit operatori pe biti:
+        Verific daca fiecare nod din graf a fost vizitat cu ajutorul unei variabile vizTotal = 1<<numarNoduri-1. Astfel daca bitul k al lui vizTotal = 1 ==> nodul k a fost vizitat
+                                                                                                                                                       0 ==> nodul k nu a fost vizitat
+        De asemenea, operatia | intre nod si masca reprezinta vizitarea nodului (0|x =>x, 1|x =>1)
+    Se parcurge graful prin BFS si incercam sa cautam un lant hamiltonian.
+    Am memorat starile de vizitare ale nodurilor intr-o multime. Inainte de a merge intr-un nod adiacent in cautare, se verifica daca acesta nu se gaseste in multime.
+6)  Se compara sirurile A si B. Cand se gaseste un caracter comun, aceasta se adauga la strigul solutiei, care se adauga in matrice la pozitia respectiva.
+    Altfel, se adauga la pozitia curenta stringul de lungime maxima.
+
+    b) Am folosit A) pentru rezolvarea lui b) deoarece pentru cea mai scurta secventa comuna avem nevoie de cea mai lunga subsecventa a sirurilor A si B.
+       In continuare rezolvarea se poate compara cu interclasarea a 2 vectori, adaugam din fiecare sir elemente care nu apar secventa de la A), apoi se adauga ce a mai ramas din fiecare cuvant in parte.
+
+1)  Programul a fost adaptat prin calculul distantelor la fiecare pas: distanta unui nod adiacent este maximul dintre distanta nodului + costul muchiei dintre nod si adiacent.
+2)  Se selecteaza nodurile cu numar impar de adiacenti, deoarece acestea ar putea reprezenta un capat de drum
+    Pornim cu DFS si verificam daca se ajunge in s(nodul de start), crestem numarul de pasi(numarul de etape). Altfel se adauga nodul curent la drum.
+3)  Pentru graful de pe tabla : 4
+    Nodurile se impart in 2 categorii, la lista primului nod din muchie se adauga in lista lui de adiacenta (nrNoduri+adiacent). Se modeleaza un fel de graf bipartit
+    Se adauga 2 noduri la graf, start si dest
+        Astfel, avem:
+                x1  x1
+        start   x2  x2  dest
+                x3  x3
+    Se seteaza capacitatile pentru fiecare muchie in parte.
+    In continuare, se parcurg nodurile in bfs si se calculeaza fluxul total, actualizand capacitatile
+4) - 
+5)  Vom conecta numerele a caror suma este numar prim. Modeland un graf bipartit, asezam numerele pare in stanga, iar cele impare in dreapta, si setam capacitatea pentru fiecare muchie = 1
+    In continuare rezovarea se rezuma la calculul fluxului maxim printr-un BFS.
+
+
+                                                                                                                                            

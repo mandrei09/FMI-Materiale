@@ -1,0 +1,65 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MihaiAndreiAlexandru241
+build_property.RootNamespace = MihaiAndreiAlexandru241
+build_property.ProjectDir = D:\Chestii\Facultate\Anul II\Semestrul I\DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)\Examen\MihaiAndreiAlexandru241\MihaiAndreiAlexandru241\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Chestii\Facultate\Anul II\Semestrul I\DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)\Examen\MihaiAndreiAlexandru241\MihaiAndreiAlexandru241
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/Chestii/Facultate/Anul II/Semestrul I/DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)/Examen/MihaiAndreiAlexandru241/MihaiAndreiAlexandru241/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Chestii/Facultate/Anul II/Semestrul I/DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)/Examen/MihaiAndreiAlexandru241/MihaiAndreiAlexandru241/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Chestii/Facultate/Anul II/Semestrul I/DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)/Examen/MihaiAndreiAlexandru241/MihaiAndreiAlexandru241/Views/Invoices/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Chestii/Facultate/Anul II/Semestrul I/DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)/Examen/MihaiAndreiAlexandru241/MihaiAndreiAlexandru241/Views/Invoices/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Chestii/Facultate/Anul II/Semestrul I/DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)/Examen/MihaiAndreiAlexandru241/MihaiAndreiAlexandru241/Views/Invoices/New.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljZXNcTmV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Chestii/Facultate/Anul II/Semestrul I/DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)/Examen/MihaiAndreiAlexandru241/MihaiAndreiAlexandru241/Views/Invoices/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljZXNcU2VhcmNoLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Chestii/Facultate/Anul II/Semestrul I/DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)/Examen/MihaiAndreiAlexandru241/MihaiAndreiAlexandru241/Views/Invoices/Show.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljZXNcU2hvdy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Chestii/Facultate/Anul II/Semestrul I/DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)/Examen/MihaiAndreiAlexandru241/MihaiAndreiAlexandru241/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Chestii/Facultate/Anul II/Semestrul I/DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)/Examen/MihaiAndreiAlexandru241/MihaiAndreiAlexandru241/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Chestii/Facultate/Anul II/Semestrul I/DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)/Examen/MihaiAndreiAlexandru241/MihaiAndreiAlexandru241/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Chestii/Facultate/Anul II/Semestrul I/DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)/Examen/MihaiAndreiAlexandru241/MihaiAndreiAlexandru241/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Chestii/Facultate/Anul II/Semestrul I/DAW - Dezvoltarea Aplicatiilor Web (ASP.NET)/Examen/MihaiAndreiAlexandru241/MihaiAndreiAlexandru241/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-5ytnax7e6o

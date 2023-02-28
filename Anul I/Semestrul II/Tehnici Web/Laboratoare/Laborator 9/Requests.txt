@@ -1,0 +1,6 @@
+GET -> aduce date
+POST -> salveaza date
+Put -> actualizeaza date
+DELETE
+--------------------------
+PATCH -> actualizeaza partial

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>P2</title>
+    <style>
+      .c1 {
+        color: blueviolet;
+      }
+
+      .c2 {
+        color: lime;
+      }
+
+      .c3 {
+        color: salmon;
+      }
+
+      .c4 {
+        color: black;
+      }
+
+      .c5 {
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <script async>
+      const N = Math.max(10, new Date().getMinutes());
+      const body = document.getElementsByTagName("body")[0];
+    //   console.log(N);
+    //   console.log(Math.floor(Math.random() * 5 + 1));
+
+      for (let i = 0; i < N; i++) {
+        const newP = document.createElement("p");
+        newP.innerHTML = "prenumeleMeu";
+        newP.style.width = "100px"
+        newP.classList.add(`c${Math.floor(Math.random() * 5 + 1)}`);
+        body.appendChild(newP);
+      }
+
+      const pars = document.getElementsByTagName("p");
+      for(let par of pars) {
+          par.addEventListener("click", (e) => {
+             const currentParClass = par.classList[0]; 
+             const toBeDeletedPars = document.querySelectorAll(`.${currentParClass}`)
+             for(let p of toBeDeletedPars) {
+                 p.remove()
+             }
+             e.stopPropagation()
+          })
+      }
+
+      document.addEventListener("click", (e) => {
+          window.alert(e.clientY)
+      })
+    </script>
+  </body>
+</html>
+
+<!-- Creati un document HTML fara continut (nu contine alte elemente in interiorul body-ului). 
+    Scrieti cod JavaScript pentru a rezolva urmatoarele:  
+
+- la incarcarea paginii, se creeaza N paragrafe, N=maxim(10, K) unde K este numarul de minute al orei curente (ex: pentru 10:32:29, K=32). 
+- Textul fiecarui paragraf va fi prenumele vostru. 
+- Fiecare paragraf va primi o clasa aleatoare din multimea {"c1", "c2","c3", "c4","c5"}. 
+- Scrieti cod CSS astfel incat fiecarei clase sa ii corespunda o culoare diferita a textului.  
+- La click oriunde in fereastra (in afara paragrafelor) se da un alert cu coordonata y a cursorului. 
+- La click pe oricare paragraf se vor sterge toate paragrafele care au aceeasi clasa cu paragraful pe care s-a dat click,  
+insa nu mai apare alertul.  -->

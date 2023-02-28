@@ -1,0 +1,230 @@
+---
+title: Legea lui Benford. Proiect la Probabilități și statistică
+author: Filimon Ioana, Furdui Vlad, Mihai Andrei
+date: "2023-02-02"
+output: html_document
+runtime: shiny
+---
+
+**INTRODUCERE**
+
+Distribuția Benford , mai bine cunoscută sub numele de legea lui Benford , sau legea primelor cifre , descrie distribuția probabilității cu care apare prima cifră a numerelor în multe exemple de colecții reale de date (de exemplu, populația municipalităților, citate de acțiuni, constante fizice sau matematice, număr a drumurilor existente în localități).
+
+Am testat această aplicație pe doua baze de date care conțineau numărul de review-uri pentru aplicații sau jocuri de pe cele mai folosite platforme în sensul acela.
+
+PARTEA DE UI Am început conținutul vizual prin a despacheta librăria shiny, cu ajutorul căreia am făcut aplicația, shinithemes de unde am luat theme-ul "united" și ggplot2 prin care am generat tabelele. Apoi, după afișarea a două texte scrise în partea de server, am creat un mod de a îți putea alege generarea graficului în funcție de datele din cadrul bazelor pentru aplicații sau jocuri, definirea mărimii de referință pentru grafice, dar și sursele de unde am preluat datele.Totodată, utilizatorul va putea vedea și tabelul de unde au fost preluate datele.
+
+```{r, warning = FALSE, fig.show='hide'}
+ 
+    
+library(shiny) 
+library(shinythemes) 
+library(ggplot2) 
+
+ui <- fluidPage( theme = shinytheme("united"), 
+                 
+      navbarPage("Benford App",
+                            
+                tabPanel("Recenzii", 
+                    h3("Legea lui Benford"),
+                    uiOutput('formula'), 
+                                     
+                    h4("Aplicații și Jocuri"),
+                                     
+                    textOutput("text1"),
+                    textOutput("text2"),
+                                     
+                              
+                      sidebarLayout(
+                                            
+                      sidebarPanel(
+                                         
+                      selectInput("tip", "Alege tipul de date:", 
+                              choices=c('aplicatii', 'jocuri')),
+                                          
+                                         
+                                         
+                                         
+                                         
+                      sliderInput("n", "Marime de referinta", min = 0, max =20000, value = 7000),
+                                         
+                      hr(),
+                                         
+                      helpText("Sursa date:"),
+                      conditionalPanel(condition = "input.tip == 'aplicatii' ",
+     tags$a(href="https://www.kaggle.com/datasets/lava18/google-play-store-apps", "Google Play Store Apps")),
+                      conditionalPanel(condition = "input.tip == 'jocuri' ",
+   tags$a(href="https://www.kaggle.com/datasets/rahuldabholkar/steam-pc-games", "PC Games")),
+                                       ),
+                                       
+                                       
+                      mainPanel(
+                                         
+                      tabsetPanel(
+                      tabPanel("Grafic", plotOutput("date")), 
+                      tabPanel("Vizualizare date tabel", DT::dataTableOutput("mytable") )
+                                         )
+                                       )
+                                       
+                                     )
+                            ),
+                            
+                            
+     helpText("Proiect realizat de Filimon Ioana-Andreea, Furdui Vlad-Rares, Mihai Andrei-Alexandru (241)")
+                 )
+                 
+)
+```
+
+PARTEA DE SERVER
+
+Aceasta începe cu redactarea textelor ce o să fie afișate în aplicație, apoi cu formula legii. După aceea, este transpusă legea lui Benford într-o funcție, care prima oară va extrage prima cifră a fiecărui număr, va crea un vector de frecvență unde este ținută evidența apariției fiecărei prime cifre, apoi în baza valorilor din el este calculat procentul apariției fiecărei cifre, care este ulterior comparat cu cel al formulei aplicate pe respectiva cifră, la final fiind format un data frame.Apoi este generat graficul prin intermediul ggplot2. În funcție de ce este ales din UI, aplicații sau jocuri, se vor atribui valorile anumitor coloane în tabelul care va fi afișat, rate va lua valorile din coloana Reviews, care are același nume în ambele baze de date și este apelată funcția Benford. La final, se rulează aplicația prin shinyApp.
+
+```{r, warning = FALSE, fig.show='hide'}
+
+
+
+server <- function(session,input,output) {
+  
+  output$text1<-renderText({
+    "Una dintre aplicabilitățile legii lui Benford este cea de a identifica posibiliele fraude la nivelul statisticilor, iar cum review-urile constau, într-o mare parte, într-unul
+    dintre cele mai puternice puncte de referință în convingerea utilizatorului de a-și cumpăra o aplicație sau un joc, această lege poate verifica veridicitatea acestora.
+    "
+  })
+  output$text2<-renderText({
+    "
+    Astfel, sunt introduse numărul de recenzii pentru aplicațiile de pe Google Play, dar și pentru jocurile de pe cea mai ulilizată platformă în acest sens, Steam, date pe care
+    generarea graficului se bazează în generarea acestuia.
+    
+    "
+  })
+  
+  output$formula <- renderUI({
+    withMathJax(
+      
+      helpText('$$P(d)=lg (d+1) -lg(d)=lg(\\frac{d+1}{d})=lg(1+\\frac {1}{d}), d\\in\\{1..9\\}$$')
+    )
+  })
+
+  Benford<- function(rate, linii_coloana)
+  {
+    
+    primaCifra<-function(x) as.numeric(substr(gsub('[0.]', '', x), 1, 1))
+    
+    frecv<-c(0,0,0,0,0,0,0,0,0)
+    for (i in 1:linii_coloana)
+    {
+      cifra<-primaCifra(rate[i])
+      frecv[cifra]<-frecv[cifra]+1
+    }
+    total<-sum(frecv)
+    
+    procent<-c(0,0,0,0,0,0,0,0,0)
+    for (i in 1:9)
+    {
+      procent[i]<-frecv[i]/total 
+     
+    }
+    benford<-c(0,0,0,0,0,0,0,0,0)
+    for (i in 1:9)
+    {
+      benford[i]<-log10(1+ 1/i)
+    }
+    
+    frame3<-data.frame(
+      numere=c("1","2", "3", "4", "5", "6", "7", "8", "9"),
+      ben=benford,
+      procente=procent
+    )
+    
+    ggplot(data = frame3, aes(x = numere, group=1))+ geom_bar(aes(y = procente), stat = "identity", color=NA, fill="lightblue") + geom_line(aes(y = ben), stat = "identity", color="red") 
+    
+  }
+
+ 
+  output$date <- renderPlot({
+    
+ 
+    nume_csv<-paste(input$tip, ".csv", sep="")
+    data1<-(read.csv(nume_csv, header=TRUE))
+ 
+    if(nume_csv == "aplicatii.csv")
+    tabel<- data.frame(
+      Nume=data1$App,
+      Rating=data1$Rating,
+      Marime=data1$Size,
+      Reviews=data1$Reviews,
+      Instalari=data1$Installs
+      )
+    
+    
+    if(nume_csv == "jocuri.csv")
+      
+      tabel<- data.frame(
+        Nume=data1$title,
+        Pret=data1$price,
+        Reviews=data1$Reviews,
+        ProcentDeApreciere=data1$percent_positive
+        )
+      
+    output$mytable = DT::renderDataTable({tabel})
+
+    
+    rate<-data1$Reviews
+
+    linii_coloana<-input$n
+    
+    Benford(rate, linii_coloana)
+    
+  })
+  
+  
+  
+}
+
+```
+
+La final, se rulează aplicația prin shinyApp.
+
+Acestea sunt graficul și datele pentru aplicații;
+
+```{r echo=FALSE}
+ knitr::include_graphics("grafic_aplicatii.png", error = FALSE)
+
+```
+
+
+
+
+
+
+```{r echo=FALSE}
+ knitr::include_graphics("baza_aplicatii.png", error = FALSE)
+
+```
+
+
+
+
+
+
+Acestea sunt graficul și datele pentru jocuri;
+
+
+
+
+
+
+```{r echo=FALSE}
+ knitr::include_graphics("grafic_jocuri.png", error = FALSE)
+
+```
+
+
+
+
+
+```{r echo=FALSE}
+ knitr::include_graphics("baza_jocuri.png", error = FALSE)
+
+```

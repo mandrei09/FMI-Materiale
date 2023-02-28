@@ -1,0 +1,40 @@
+states:
+    q1
+    q2
+    qaccept
+    qreject
+End
+sigma:
+    0
+    1
+    #
+End
+gamma:
+    0
+    1
+    #
+    s
+End
+transitions:
+    q1 q1 0 0/0 S
+    q1 q1 1 0/0 S
+    q1 q1 0 0/1 S
+    q1 q1 1 0/1 S
+    q1 qreject 0/0 # S
+    q1 q2 0 0/1 S
+    q1 q2 1 0/1 S
+    q2 q2 0 0/1 R
+    q2 q2 1 0/0 R
+    q2 qreject 0 0/1 S
+    q2 qreject 1 0/0 S
+    q2 qreject # 0/1 S
+    q2 qreject # 0/0 S
+    q2 qaccept 0 0/1 S
+    q2 qaccept 1 0/0 S
+    q2 qaccept # 0/1 S
+End
+special_states:
+    q1
+    qaccept
+    qreject
+End

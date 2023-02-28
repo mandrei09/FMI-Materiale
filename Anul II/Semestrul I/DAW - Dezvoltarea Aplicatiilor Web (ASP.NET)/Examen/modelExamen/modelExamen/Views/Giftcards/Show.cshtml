@@ -1,0 +1,19 @@
+﻿@model modelExamen.Models.Giftcard
+
+<div class="card">
+
+    @Html.Partial("GiftcardInfo", Model)
+
+    <div class="d-flex flex-row p-3">
+
+        <a class="btn btn-primary" href="/Giftcards/Edit/@Model.Id">Editeaza</a>
+
+        <form method="post" action="/Giftcards/Delete/@Model.Id">
+
+            <button class="btn btn-danger" type="submit">Sterge</button>
+
+        </form>
+
+    </div>
+
+</div>

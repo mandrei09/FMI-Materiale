@@ -1,0 +1,74 @@
+--11
+
+--Afisarea primei litere din numele operatorilor care lucreaza la o firma de stat cu ID-ul 1. Sa se specifice daca
+--initiala operatorului este 'M'
+
+select distinct SUBSTR(Nume,1,1) as initiala,UPPER(Nume) Nume,
+CASE WHEN SUBSTR(Nume,1,1)='M' then 'Initiala este M'
+else 'Initiala nu este M'
+end as VerficareInitiala
+from OPERATOR o, FIRMA f
+where o.firma_id=1 AND f.tip_firma='Stat' order by UPPER(Nume);
+
+--Afisarea destinatiei calatoriilor, data eliberarii de pe bilet si numarul de luni de cand biletul s-a eliberat  
+--in care pretul este maxim si reducerea nu se aplica pe bilet. Sa se verifice daca biletul a fost eliberat in data curenta.
+
+select NVL(destinatie,'Nu exista'),data_eliberare, ROUND(MONTHS_BETWEEN(sysdate,data_eliberare)) as Luni, 
+DECODE(data_eliberare,sysdate,'Eliberat astazi', 'Nu a fost eliberat astazi') Verificare
+from CALATORIE c join BILET b on c.bilet_id = b.bilet_id
+where b.pret in (select MAX(pret) from BILET b join CALATORIE C on c.bilet_id = b.bilet_id) and b.reducere=0;
+
+select * from CALATOR;
+select * from CATEGORIE;
+
+--Afisarea numelui calatorilor lor pentru calatorii care sunt studenti.
+
+with tabelaTemporara as
+    (select c1.nume AS rezultat
+    from CALATOR c1,CATEGORIE c2
+    where c1.calator_id=c2.calator_id and c2.tip_categorie='Student'
+    Group by c1.nume,c1.calator_id)
+
+select rezultat from tabelaTemporara;
+
+--Afisarea anului din data de eliberare a unui bilet unde durata calatoriei este mai mare decat 3.
+
+select EXTRACT(year from b.data_eliberare) Anul_eliberarii
+from CALATORIE c join BILET b on c.bilet_id = b.bilet_id
+where c.durata_zile>3;
+
+--Afisarea pretului biletelui unde destinatia este Bucuresti.
+
+select b.pret Pret
+from CALATORIE c join BILET b on c.bilet_id = b.bilet_id
+where c.destinatie='Bucharest';
+
+--12
+
+update BILET set pret = pret-reducere*pret/100;
+
+update BILET set pret = pret+ (select avg(pret) from BILET); 
+
+update BILET set reducere = reducere + (select count(*) from BILET);
+
+--13
+
+CREATE SEQUENCE seq_calatorie
+start with 100
+INCREMENT BY 1
+NOMAXVALUE
+NOCYCLE
+NOCACHE;
+INSERT INTO CALATORIE VALUES (seq_calatorie.nextval, 'Alexandria', 3,4,1,2);
+INSERT INTO CALATORIE VALUES (seq_calatorie.nextval, 'Campina', 10,2,3,1);
+INSERT INTO CALATORIE VALUES (seq_calatorie.nextval, 'Galati', 7,1,2,1);
+SELECT * FROM CALATORIE;
+
+--14
+
+CREATE VIEW pret_mediu as
+select pret,bilet_id 
+from BILET
+where pret >(select avg(pret) from bilet);
+
+select * from pret_mediu;

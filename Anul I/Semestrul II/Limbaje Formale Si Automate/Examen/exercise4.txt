@@ -1,0 +1,55 @@
+#Mihai Andrei, Furdui Vlad, Horceag Andrei - grupa 141
+states:
+      q1
+      q2
+      q3
+      q4
+      q5
+      q6
+      q7
+      q8
+      qaccept
+      qreject
+      qfinalacc
+End
+sigma:
+     0
+     1
+     #
+End
+gamma:
+     0
+     1
+     #
+     s
+End
+transitions: 
+     q1 q3 1 x/x R
+     q3 q3 0 / R
+     q3 q3 1 / R
+     q3 q5 # / R
+     q5 q5 x / R
+     q5 q6 1 x/x L
+     q1 q2 0 x/x R
+     q2 q2 0 / R
+     q2 q2 1 / R
+     q2 q4 # / R
+     q4 q4 x / R
+     q4 q6 0 x/x L
+     q6 q6 0 / L
+     q6 q6 1 / L
+     q6 q6 x / L
+     q6 q7 # / L
+     q7 q7 0 / L
+     q7 q7 1 / L
+     q7 q1 x / R
+     q1 q8 # / R
+     q8 q8 x / R
+     q8 qaccept s R
+     qaccept qfinalacc # / L
+End
+special_states:
+          q1
+          qaccept
+          qreject
+End

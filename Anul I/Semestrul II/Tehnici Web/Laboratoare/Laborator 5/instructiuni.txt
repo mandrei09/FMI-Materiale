@@ -1,0 +1,23 @@
+# run:
+	node file_name.js
+
+# print:
+	console.log("string");
+
+# variables declaration - no data type:
+	var variable_name = "string";
+	var variable1_name = int_value;
+	var variable2_name = float_value; etc.
+
+# object declaration:
+	var obj = { 
+		name: "string";
+		int_variable = int_value;
+		array = [i1, i2, ..., in];
+
+# accessing object items:
+	obj.item_name;
+
+# adding object items: 
+	obj.cursuri.push("ABC");
+

@@ -1,0 +1,27 @@
+1.
+        Ne vom folosi de algoritmul lui Prim pentru a gasi costul minim al arborelui ce va contine
+    toate punctele de pe grafic. Initializam graful, adaugand lungimea fiecarei muchii dupa formula data.
+    In cadrul algoritmului, ne vom folosi de o functie care returneaza nodul minim care nu a fost vizitat inca
+    Initial atribuim tuturor cheilor valoarea infinit. Alegem nodul minim nevizitat si il adaugam la APM, 
+    urmand ca in final sa calculam costul total, fiind suma elementelor de tipul adiacenta[i][tata[i]].
+2.
+        Algoritmul utilizeaza BFS pentru a verifica daca exista un drum intre
+    2 noduri din graf. Graful este reprezenat in memorie printr-o matrice  
+    de adiacenta. Functia src verifica existenta elementului x intr-o lista de liste.
+    BFS este apelat pentru fiecare querry. Se reseteaza vectorul de vizitare
+    coada si vectorul de distante. Algoritmul itereaza printre adiacentii nodului curent,
+    adaugand in vectorul distante acele distante > decat cea curenta. Daca 
+    am ajuns in nodul final, returnam numarul de elemente ale listei, apoi subprogramul
+    se apeleaza pentru adiacentii nevizitati ai nodului.
+3.
+        Problema se reduce la algoritmul lui Prim, pe care il vom apela mai intai initial, iar apoi, 
+    pe rand, pentru fiecare "muchie" care se mai adauga.
+    Algoritmul continua ca in problema minCostConnectPoints doar ca algoritmul se mai aplica si pentru muchiile adaugate ulterior. 
+    Dupa parcurgerea initiala afisam totalul si vom face prim() inca de k ori, afisand costul total 
+    minim nou dupa fiecare modificare.
+4.
+        Se initializeaza vectorul de tati ( initial, fiecare nod se are pe sine ca parinte ),
+    apoi sortam muchiile in functie de cost, pentru a putea determina APM cu ajutorul
+    algoritmului lui Kruskal. Vom citi celelalte drumuri, le adaugam la apm si calculam 
+    costul minim din nou, pentru fiecare muchie. In final, rezultatul este dat de 
+    formula costMinim1-costMinim2-1

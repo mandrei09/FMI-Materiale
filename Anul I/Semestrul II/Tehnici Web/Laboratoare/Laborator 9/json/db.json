@@ -1,0 +1,44 @@
+{
+  "photos": [
+    {
+      "name": "bubu",
+      "img": "https://images.photo.ceo/breeds/affenpinscher/n02110627_8099.jpg",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "AKITA",
+      "img": "https://images.photo.ceo//breeds//akita//An_Akita_Inu_resting.jpg"
+    },
+    {
+      "id": 3,
+      "name": "CHIHUAHUA",
+      "img": "https://images.photo.ceo/breeds/chihuahua/n02085620_7613.jpg"
+    },
+    {
+      "id": 4,
+      "name": "LHASA",
+      "img": "https://images.photo.ceo/breeds/lhasa/n02098413_7358.jpg"
+    },
+    {
+      "id": 5,
+      "name": "HOUND",
+      "img": "https://images.photo.ceo/breeds/hound-afghan/n02088094_2626.jpg"
+    },
+    {
+      "name": "photo",
+      "img": "https://i.guim.co.uk/img/media/fe1e34da640c5c56ed16f76ce6f994fa9343d09d/0_174_3408_2046/master/3408.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=0d3f33fb6aa6e0154b7713a00454c83d",
+      "id": 6
+    },
+    {
+      "name": "bubu",
+      "img": "https://images.photo.ceo/breeds/affenpinscher/n02110627_8099.jpg",
+      "id": 7
+    },
+    {
+      "name": "bubu",
+      "img": "https://images.photo.ceo/breeds/affenpinscher/n02110627_8099.jpg",
+      "id": 8
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+﻿@model MihaiAndreiAlexandru241.Models.Invoice
+
+<div class="card">
+
+    @Html.Partial("InformatiiFactura", Model)
+
+    <div class="d-flex flex-row p-3">
+
+        <a class="btn btn-primary" href="/Invoices/Edit/@Model.Id">Editeaza factura!</a>
+
+        <form method="post" action="/Invoices/Delete/@Model.Id">
+
+            <button class="btn btn-danger" type="submit">Sterge factura!</button>
+
+        </form>
+
+    </div>
+
+</div>

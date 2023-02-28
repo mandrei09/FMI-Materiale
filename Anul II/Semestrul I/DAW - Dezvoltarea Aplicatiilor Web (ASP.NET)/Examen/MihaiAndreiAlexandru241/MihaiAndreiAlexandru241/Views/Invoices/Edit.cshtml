@@ -1,0 +1,56 @@
+﻿@model MihaiAndreiAlexandru241.Models.Invoice
+
+
+<h2 class="text-center mt-5">Editare factura</h2>
+<br />
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            @using (Html.BeginForm(actionName: "Edit", controllerName: "Invoices", method: FormMethod.Post, routeValues: new { id = Model.Id }))
+            {
+                /* @Html.HiddenFor(m => m.Id)  */
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                @Html.Label("Titlu", "Titlu Factura")
+                    <br />
+                @Html.EditorFor(m => m.Titlu, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(m => m.Titlu, null, new { @class = "text-danger" })
+                    <br />
+
+                    <br />
+
+                @Html.Label("Valoare", "Valoare factura")
+                    <br />
+                @Html.Editor("Valoare", new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(m => m.Valoare, null, new { @class = "text-danger" })
+                    <br />
+
+                    <br />
+
+                @Html.Label("DataScadenta", "Data scadenta")
+                    <br />
+                @Html.TextArea("DataScadenta", null, new { @class = "form-control" })
+
+                @Html.ValidationMessage("DataScadenta", null, new { @class = "text-danger" })
+                    <br />
+
+                    <br />
+                    <label>Selectati numele clientului</label>
+                    @Html.DropDownListFor(m => m.ClientId, new SelectList(Model.Clients, "Value", "Text"), "Selectati clientul", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ClientId, null, new { @class = "text-danger" })
+                    <br />
+
+                    <br />
+
+                    <button class="btn btn-sm btn-success" type="submit">Modifica factura!</button>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+
+

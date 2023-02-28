@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>P2</title>
+  </head>
+  <body>
+    <script>
+      const body = document.getElementsByTagName("body")[0];
+      const N = Math.floor(Math.random() * 6 + 12);
+
+      const ul = document.createElement("ul");
+      body.appendChild(ul);
+
+      for (let i = 0; i < N; i++) {
+        const newLi = document.createElement("li");
+        newLi.innerHTML = `item ${i}`;
+        ul.appendChild(newLi);
+      }
+
+      const liElements = document.getElementsByTagName("li");
+      for (let liEl of liElements) {
+        liEl.addEventListener("click", () => {
+          // salvam continutul din li
+          const content = liEl.innerHTML;
+          //verificam daca deja am inserat <b>
+          const contineElement = content.includes("element");
+          if (!contineElement) {
+            const boldEl = document.createElement("b");
+            boldEl.style.color = "purple";
+            const words = content.split(" ");
+
+            // verificam daca e par sau impar dupa valoarea 'i' din continut
+            boldEl.innerHTML =
+              parseInt(words[1]) % 2 == 0 ? "element par" : "element impar";
+            liEl.innerHTML = "";
+            liEl.appendChild(boldEl);
+            liEl.innerHTML += ` ${content}`;
+
+            for(let b of document.getElementsByTagName("b")) {
+                b.addEventListener("click", (e) => {
+                    b.remove();
+                    e.stopPropagation();
+                })
+            }
+          }
+        });
+      }
+      
+    </script>
+  </body>
+</html>

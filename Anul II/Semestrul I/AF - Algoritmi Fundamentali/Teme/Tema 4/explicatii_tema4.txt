@@ -1,0 +1,127 @@
+1.Transport 2 
+Se formeaza pentru fiecare masa a unui drum cate 2 liste de adiacenta, in prima se pune primul nod din muchie iar 
+in a doua, cel de-al doilea nod. Se parcurg toate masele dintr-o lista de adiacenta (acestea au fost sortate descrescator),
+astfel prima capacitate care respecta conditia pusa este rezultatul problemei) si se incearca formarea unui drum intre
+nodurile 1 si n.
+
+2. X si 0
+    Se considera un vector de configuratii care pentru fiecare configuratie posibilila stocheaza
+    0 - invalid
+    1 - win (pentru x)
+    -1 - lose (pentru x)
+    2 - draw
+    Se apeleaza subprogramul (calculeazaConfiguratie(0)). 
+Practic se calculeaza incepand de la configuratia cu 0 (unde tabla este goala)
+fiecare configuratie in parte, din configuratiile trecute.
+    Pentru fiecare configuratie retinem intr-un tabloul joc in modul urmator:
+        joc[i]=0 ==> casuta libera
+              =1 ==> x 
+              =2 ==> 0
+        unde i=0,8 - toate pozitiile posibile.
+        si memoram numarul de x-uri, respectiv de 0-uri
+    Am definit un suprogram conditiiCastig care specifica in ce coment ar castiga jucatorul care 
+pune x : daca una dintre cele 3 linii, coloane sau 2 diagnoale este plina de X.
+    Verificam conditiile de castig, iar daca cineva castiga, apoi:
+    -daca numarul de x-uri este mai mare decat numarul decat numarul de 0-uri,
+        inseamna ca este win pentru x, deci configuratii[pos]=1
+    Daca numarul de x-uri + numarul de 0-uri = 9,
+        tabla s-a umplut si nimeni nu a casitgat, deci este draw - configuratii[pos]=2
+    Daca tabla inca nu s-a umplut, si numarul de x-uri = numarul de 0-uri,
+        inseamna ca este randul jucatorului x pentru ca x pune primul.
+        Calculam o alta configuratie si pe baza ei ne vom da seama si de cea actuala.
+    La fel si in cazul in care este randul jucatorului 0.
+    In final, calculam numarul configuratiei in functie de ce se afla deja pe tabla in input,
+    apoi afisam configuratii[nrConfig] pentru fiecare configuratie in parte.
+
+3.Accounts merge
+
+Pentru aceasta problema, vom reprezenta emailurile ca si noduri, iar 
+o muchie intre 2 email-uri inseamna ca acestea apartin aceluiasi user,
+deci fiecare cont se poate reprezenta ca o componenta conexa in graf.
+    -Conectam fiecare email al unui cont cu celalalte email-uri.
+    -Prin DFS cautam fiecare email care apartine aceleasi persoane si le memoram intr-o lista noua.
+
+4.Flipping Matrix
+Problema se reduce la utilizarea fluxului / cuplajului
+deoarece putem modela problema cu ajutorul unui graf bipartit G = (L, C, M):
+--> L = {1, 2, ... N} = liniile
+--> C = {1, 2, ... N} = coloanele 
+--> M = {(i, j), cu proprietatea ca elementul de pe pozitia (i, j) este 1}
+
+Facem cuplaj pe graful obtinut anterior.
+--> Daca fluxul este egal cu n avem solutie: 
+    muchiile din cuplaj care nu sunt pe diagonala
+--> Daca fluxul nu este egal cu n:
+    nu avem o solutie
+
+Cand citim matricea input, memoram in matricea pentru cuplaj 
+astfel : 
+    Daca avem 1 la intersectia liniei si a coloanei adaugam si in matricea pentru cuplaj. 
+    Folosim n+j ca sa nu confundam linia 1 cu coloana 1.
+    Practic, dublam nodurile asa cum faceam la cuplaj normal.
+Adaugam muchii de la sursa(0) la orice alt nod din prima multime
+si de la destinatie(2*n+1) la orice alt nod din a doua multime, unde 
+nodul 0 si 2*n+1 sunt auxialiare adaugate in plus.
+Prin BFS, parcurgem nodurile din cea de-a 2-a multime si memoram drumul 
+intr-o lista, mergand pe vectorul de tati. Calculam capacitatea minima, 
+calculam maxflow si actualizam valorile capacitatilor in matrice.
+    Daca valoarea fluxului != n, nu avem solutie. Altfel,
+gasim perechile cuplate, iar pentru fiecare pereche de linii
+daca o linie a fost cuplata cu cealalta, interschimbam liniile si afisam operatia
+corespunzatoare.
+
+5.Matching substrings
+Daca k = 1, afisam pur si simplu fiecare string.
+Altfel:
+
+    Calculam pentru fiecare string care este prefixul lui
+    de lungime k-1 si sufixul de lungime k-1, si tinem minte
+    cate un id pentru a crea un nod virtual care sa reprezinte stringul.
+    Trag o muchie intre prefixul si sufixul fiecarui string.
+
+    Consideram un dictionar care retine pentru fiecare prefix / sufix un ID - stringID
+    si inversul celui de mai sus, pentru fiecare ID retine prefixul / sufixul - revStringID,
+    un id care va retine in final numarul sustringurilor (nodurilor),
+
+    Pentru fiecare cuvant in parte ii luam prefixul su sufixul, si daca nu exista deja
+    "in graf", il adaugam ca si nod, ii calculam gradul interior si pe cel exterior.
+        (Practic : stringID contine pentru fiecare prefix un ID
+        pentru a-l putea utiliza in listele de adiacenta si a calcula gradul
+        interior si cel exterior.)
+
+    In continuare, verificam daca se poate face un lant eulerian, anume daca nu exista noduri
+    cu diferenta dintre gradul de intrare si gradul de iesire mai mare decat 1,
+    iar daca exista sunt maxim 2, iar cel cu gradul de intrare mai mic trebuie sa
+    fie nodul de start.
+
+    Se parcurg toate nodurile cu ajutorul lui DFS si adaugam in lista "answer"
+    fiecare substring corespuzator. In lista answer, nodurile care formeaza raspunusul
+    sunt in ordine inversa, datorita utilizarii stivei in parcurgere.
+
+    Daca exista un nod nevizitat, inseamna ca avem mai multe componente conexe
+    si nu putem construi un string cumulat, iar daca nu,
+    concatenam stringul care va fii rezultatul problemei.
+
+6.DBZ
+
+Acesta rezolvare se bazeaza pe algoritmul lui Dijkstra, care calculeaza
+cel mai scurt drum intre 2 noduri ale unui graf, in cazul nostru va trebui
+sa gasim cel mai scurt drum de la un nod inapoi in acelasi nod, trecand 
+o singura data printr-o muchie. Algornitmul se apeleaza pentru fiecare nod 
+in parte, si se incearca gasirea unui lant in modul descris mai sus.
+Se incepe din nodul curent, apoi se parcurg toate nodurile adiacente
+si se merge pe muchiile unde suma distantelor este minima.
+    Daca dupa alg lui Dijkstra distanta minima memorata initial este 
+inca infinit, inseamna ca nu exista un drum de la pleneta i inapoi.
+
+7.Reremito
+
+Problema se rezuma la o parcurgere de tip DFS putin modificata.
+Ne consideram un vector de distante, care retine date in modul urmator:
+    distante[i][0] retine distanta minima la fiecare pas pentru nodul i
+    distante[i][1] retine maximul dintre distanta curenta si distanta intregului 
+Aplicam parcurgerea DFS pentru fiecare punct de start in parte:
+    - parcurgem toti adiacentii nodului curent
+    - merge pe toate lanturile existente, calculand dista maxima pentru fiecare nod de start in parte
+    - se calculeaza maximul dintre distanta actuala si distanta altui drum
+    - in final se actualizeaza datele in vectorul de distante

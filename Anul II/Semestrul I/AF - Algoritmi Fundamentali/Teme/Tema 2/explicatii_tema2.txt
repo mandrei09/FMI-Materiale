@@ -1,0 +1,132 @@
+1. Retea2
+        Aceasta problema este un exemplu diret al algoritmului lui Prim, care
+    determina un arbore partial de post minim. Se incepe dintr-un nod
+    la intamplare si se aduaga la subgraf muchia cu costul minim care nu apartine de graf.
+    Acesti pasi se repeta pana cand formam un arbore partial de cost minim.
+    Se creeaza o functie pentru a calcula distanta euclidiana intre 2 puncte.
+    Distantele dintre puncte de retin in matricea "matrice", unde matrice[i][j] = distanta dintre
+    nodurile i si j. Apoi, parcurgand fiecare bloc, dorim sa calculam distanta minima care trebuie adaugata
+    la distanta totala, pentru a se conecta cat mai eficent la retea, dupa care 'vizitam' blocul 
+    respectiv, cu semnificatia ca acesta a fost deja adaugat cu cost minim in retea. 
+2. Disjoint
+        Vectorul 'multime' are semnificatia unui vector de reprezentanti, astfel pentru
+    a verifica daca doua noduri fac parte din aceeasi multime vom verifica daca au acelasi 'capat'
+    al multimii. 
+    Pentru a reuni multimile a 2 noduri vom spune ca acum ambele multimi au acelasi
+    capat, actualizand lista 'multime' pentru capetele multimilor.
+3. Clustering
+        Am creat functia pentru distanta levenshtein, folosind tehnica programarii dinamice.
+    Problema se imparte in 2 subprobleme, anume:
+    -Daca ambele cuvinte au ultimul caracter identic, atunci distanta de editare finala
+    este aceeasi ca distanta de editare a ambelor siruri pana la penultimul caracter.
+    -Daca ultimul caracter difera, atunci distanta va fi 1 + costul minim dintre 
+    inserare, stergere si inlocuire a unui caracter.
+    Astfel, matrice[i][j] retine distanta dintre cuvintele i si j.
+        Din cate am inteles eu, clustering se refera la separarea cuvintelor dintr-o multime in mai multime
+        submultimi, dupa gradul de separarea care este dat chiar de distanta levenshtein de care am vorbit 
+        anterior.
+4. Path with max prob.
+        Vom folosi un bfs pentru a parcurge drumurile prin muchiile dorite, si vom intializa probabilitatea
+    nodului de start cu 1 pentru a fi neutra la inmultire. Daca gasim un nod adiacent cu o probabilitate mai 
+    buna decat cea a nodului curent, il adaugam in coada si apelam din nou programul pentru
+    adiacent si produsul probabilitatilor celor 2 noduri.
+5. Catun
+        Acest program este un exemplu direct al algoritmului lui Dijkstra, care
+    calculeaza distanta miniam intre fiecare un nod din graf si restul de noduri.
+        Vom parcurge traseele printr-un BFS si verificam daca exista o cale mai scurta
+    catre nodurile adiacente, moment in care actualizam vectorul de distante.
+        In final, pentru fortarete vom afisa 0, iar pentru catune indicele fortaretei de
+    care apartin (daca distantele sunt egale, cea de inidice minim), sau 0 daca nu 
+    se poate face un drum.
+
+import sys
+def printMatrix(matrice):
+    for i in range(len(matrice)):
+        for j in range(len(matrice[i])):
+            print(matrice[i][j],end=" ")
+        print()
+
+#functie care ne ajuta sa gasim indexul nodului care trebuie vizitat data viitoare
+def deVizitat():
+
+    global vizitat
+    global distanta
+    index = -10
+    for i in range(n+1):
+        if vizitat[i]==0 and (index<0 or distanta[i]<=distanta[index]): 
+            #ne intereseaza nodurile nevizitate si care au o distanta cat mai mica
+            index=i
+    return index
+
+#citire date
+f = open("catun.in")
+
+n, m, k = [int(x) for x in f.readline().split()]
+
+fortarete = [int(x) for x in f.readline().split()]
+
+sate = []
+
+for i in range(m):
+
+    linie = [int(x) for x in f.readline().split()]
+    sate.append(linie)
+
+f.close()
+#########
+
+#Creem matricea de adiacenta unde adiacenta[i][j]=c ==> muchia i j are costul=c
+adiacenta=[[0 for i in range(n+1)] for j in range(n+1)]
+
+for i in range(m):
+    adiacenta[sate[i][0]][sate[i][1]]=adiacenta[sate[i][1]][sate[i][0]]=sate[i][2]
+
+rezultat=[0 for i in range(n+1)]
+
+#Pentru fiecare nod calculam distanta de la el la celelalte noduri
+for i in range(1,n+1):
+    vizitat=[0 for i in range(n+1)]
+    distanta=[sys.maxsize for i in range(n+1)] #se incepe cu distanta infinit pentru toate nodurile
+    #mai putin cel caruia ii calculam distanta
+    distanta[i]=0
+    for nod in range(1,n+1):
+        #Cautam urmatorul nod ce trebuie vizitat
+        nodUrmator=deVizitat() #Vezi explicatii la functie
+        for vecin in range (1,n+1):
+            #Actualizam distantele
+            if adiacenta[nodUrmator][vecin] > 1 and vizitat[vecin]==0:
+                #daca exista muchie                 nevizitata
+                #calculam o distanta noua ca fiind suma distantelor
+                distantaNoua=distanta[nodUrmator]+adiacenta[nodUrmator][vecin]
+                #noi vrem sa obtinem distante cat mai mici, deci selectam in functie de asta
+                if distantaNoua<distanta[vecin]:
+                    distanta[vecin]=distantaNoua
+            #Vizitam
+            vizitat[nodUrmator]=1
+
+    #La final calculam minimul dintre distantele dintre nodul curent si toate fortaretele
+    Min=sys.maxsize
+    for fortareata in fortarete:
+        if distanta[fortareata]<Min:
+            Min=distanta[fortareata]
+            rezultat[i]=fortareata
+    #modificari---------------------
+    counter = 0
+    for fortareata in fortarete:
+        if distanta[fortareata] == Min:
+            counter += 1
+    if counter > 1:
+        print(i,end=" ") 
+    #-------------------------------
+print(rezultat[1:])
+
+Fiecare lista de adiacenta a unui nod se parcurge de n*n ori
+
+6. Easygraph
+
+Acest algoritm foloseste DFS pentru a gasi lantul de cost maxim.
+Utilizam vectorul dp, unde dp[i] retine suma maxima a unui lant, pornind din i
+Pentru fiecare nod nevizitat, traversam muchii grafului (prin DFS) si actualizam 
+vectorul de distante daca gasim o valoare mai mare decat cea curenta.
+
+

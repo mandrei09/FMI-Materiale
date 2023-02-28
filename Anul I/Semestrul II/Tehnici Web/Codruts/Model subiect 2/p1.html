@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>P1</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+      }
+
+      #container {  
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: 1fr;
+        width: 500px;
+        height: 500px;
+        background-color: green;
+        border: 1px solid black;
+      }
+
+      .patrat:nth-child(even) {
+          border: 1px solid red;
+      }
+
+      .patrat:nth-child(odd) {
+          border: 1px solid blue;
+      }
+
+      @media screen and (max-width: 800px) {
+          #container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(5, 1fr);
+            width: 50vw;
+          }
+
+          body {
+              animation: animatie 2s infinite;
+          }
+      }
+
+      @keyframes animatie {
+          0% {
+              background-color: white;
+          }
+          50% {
+              background-color: yellow;
+          }
+          100% {
+              background-color: white;
+          }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div class="patrat">1</div>
+      <div class="patrat">2</div>
+      <div class="patrat">3</div>
+      <div class="patrat">4</div>
+      <div class="patrat">5</div>
+    </div>
+  </body>
+</html>
+
+<!-- P1. Creati un element div cu id-ul  "container" si care sa aiba in interiorul sau 
+    (copii directi) alte 5 divuri cu clasa "patrat". Scrieti cod CSS care sa rezolve cerintele: 
+
+-la latimea paginii peste 800px, divul cu id-ul "container" sa fie centrat (pe orizontala) in pagina, 
+sa aiba inaltimea si latimea de 500px, background verde si border negru de 1px iar divurile cu clasa "patrat" 
+de pe pozitiile pare sa aiba border rosu iar cele de pe pozitii impare border albastru si sa fie pozitionate in interiorul 
+divului parinte pe 5 coloane de latimi egale si avand inaltimi egale cu ale divului parinte. 
+
+ -la latimea paginii sub 800px divul cu id-ul "container"  va avea latimea egala cu jumatate din latimea 
+ paginii iar elementele din clasa "patrat" se vor dispune pe o singura coloana, unul sub altul, ocupand intreaga latime a parintelui.  
+
+-tot la latimea paginii sub 800px, culoarea de background a paginii se va schimba lent timp de o secunda, 
+de la alb la galben si invers repetandu-se la infinit.   -->

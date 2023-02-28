@@ -1,0 +1,32 @@
+﻿@model modelExamen.Models.Giftcard
+
+
+<h2>Cautare carduri </h2>
+<br />
+
+@* Motorul de cautare *@
+<form method="GET">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="cauta card" name="search" value="@ViewBag.SearchString">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </div>
+</form>
+
+@foreach (var giftcard in ViewBag.Giftcards)
+{
+    <div class="card">
+        <p>@giftcard.Denumire</p>
+        <p>@giftcard.Descriere</p>
+        <p>@giftcard.DataExp</p>
+        <p>@giftcard.Procent</p>
+        <p>@giftcard.Brand.Nume</p>
+        <a class="btn btn-success" href="/Giftcards/Show/@giftcard.Id">Vezi card</a>
+
+    </div>
+
+    <br />
+    <br />
+
+    <br />
+    <br />
+}

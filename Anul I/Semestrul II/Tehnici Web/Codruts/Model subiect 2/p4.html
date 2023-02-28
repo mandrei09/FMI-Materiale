@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P4</title>
+</head>
+<body>
+    <form method="post" action="http://localhost:3000/post">
+        <input type="text" name="nume" />
+        <br>
+        <input type="submit" />
+    </form>
+</body>
+</html>
+
+<!-- P4. Scrieti un document HTML care sa contina un formular cu un element input de tip text si un buton-submit. 
+    Se considera pe server vectorul de obiecte, 
+
+persoane=[{nume:"Ion", sex:"m", varsta:3},{nume:"Oana", sex:"f", varsta:23},{nume:"Daria",sex:"f", varsta:10}, 
+{nume:"Mihai", sex:"m", varsta:19}, {nume:"Gabriel", sex:"m", varsta:22}, {nume:"Simona", sex:"f", varsta:11}, 
+{nume:"Bogdan", sex:"m", varsta:28}]. 
+
+Scrieti aplicatia server app.js astfel  incat dupa introducerea in inputul de tip text a unui nume, la click pe butonul de submit, 
+numele introdus se va trimite catre server  iar in pagina se va afisa (in locul formularului sau sub el) daca e fata sau baiat si 
+este sau nu minor (sub 18 ani) sau mesajul "Nu exista numele cautat" in cazul in care numele nu se gaseste in vectorul de persoane 
+(de ex: daca in input introduceti “Gabriel” se va afisa "baiat, nu este minor").   -->

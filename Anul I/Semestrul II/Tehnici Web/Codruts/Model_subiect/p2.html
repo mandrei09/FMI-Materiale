@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>P2</title>
+
+    <style>
+      .dreptunghi {
+        width: 100px;
+        height: 150px;
+        border: 1px solid red;
+        display: inline-block;
+        margin-left: 10px;
+      }
+    </style>
+
+    <script>
+      window.onload = function () {
+        for (var i = 0; i < 10; i++) {
+          var div = document.createElement("div"); //creare colectie
+
+          div.className = "dreptunghi"; //div.classList.add("dreptunghi");
+          div.innerHTML = "divul " + (i + 1);
+          document.body.appendChild(div);
+
+          //  div.style.height="100px";
+          //  alert(typeof(div.style.height));
+          var initial = div.offsetHeight; //preluare stil creat cu CSS: 150
+
+          //   div.onclick=function(event){ //click pe div
+          //     if(this.style.height!==""){
+          //       var curent=parseInt(this.style.height);
+          //        this.style.height= curent+10+'px';
+          //      }
+          //      else
+          //     {
+          //         this.style.height= initial + 10 + 'px';
+          //     }
+          //     event.stopPropagation(); //oprirea propagarii spre parinte
+          //   }
+          // })
+
+        }
+
+        divs = document.getElementsByTagName("div");
+
+        for (let div of divs) {
+          let initial = div.offsetHeight;
+
+          div.addEventListener("click", () => {
+            div.style.height = `${div.offsetHeight + 10}px`;
+            event.stopPropagation();
+          });
+        }
+
+        document.body.onclick = function () {
+            //click pe body
+            var divuri = document.getElementsByClassName("dreptunghi");
+            for (d of divuri) d.style.height = initial + "px";
+          };
+      };
+    </script>
+  </head>
+  <body></body>
+</html>

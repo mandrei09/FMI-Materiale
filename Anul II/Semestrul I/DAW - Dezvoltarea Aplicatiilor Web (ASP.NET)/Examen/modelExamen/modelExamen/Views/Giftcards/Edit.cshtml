@@ -1,0 +1,66 @@
+﻿@model modelExamen.Models.Giftcard
+
+
+<h2 class="text-center mt-5">Editare card</h2>
+<br />
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            @using (Html.BeginForm(actionName: "Edit", controllerName: "Giftcards", method: FormMethod.Post, routeValues: new { id = Model.Id }))
+            {
+                /* @Html.HiddenFor(m => m.Id)  */
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                @Html.Label("Denumire", "Denumire card")
+                <br />
+                @Html.EditorFor(m => m.Denumire, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(m => m.Denumire, null, new { @class = "text-danger" })
+                <br />
+
+                <br />
+
+                @Html.Label("Descriere", "Descriere card")
+                <br />
+                @Html.Editor("Descriere", new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(m => m.Descriere, null, new { @class = "text-danger" })
+                <br />
+
+                <br />
+
+                @Html.Label("Procent", "Procent card")
+                <br />
+                @Html.TextArea("Procent", null, new { @class = "form-control" })
+
+                @Html.ValidationMessage("Procent", null, new { @class = "text-danger" })
+                <br />
+
+                <br />
+
+
+                @Html.Label("DataExp", "Data Expirare")
+                <br />
+                @Html.TextArea("DataExp", null, new { @class = "form-control" })
+
+                @Html.ValidationMessage("DataExp", null, new { @class = "text-danger" })
+                <br />
+
+                <br />
+                <label>Selectati brandul</label>
+                @Html.DropDownListFor(m => m.BrandId, new SelectList(Model.Brd, "Value", "Text"), "Selectati bradul", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.BrandId, null, new { @class = "text-danger" })
+                <br />
+
+                <br />
+
+                <button class="btn btn-sm btn-success" type="submit">Modifica</button>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+
+

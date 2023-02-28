@@ -1,0 +1,1 @@
+console.log(total(cart).toFixed(2));
