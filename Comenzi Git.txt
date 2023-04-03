@@ -1,0 +1,24 @@
+----------- Comenzi utile Git --------------
+
+git init - initializeaza un repo
+
+git add . - selecteaza fisierele pe care vrei sa le adaugi 
+	numeFisier
+
+git commit -M "Text" - salveaza modificarile, flag-ul -M vine de la message, afiseaza mesajul dat ca parametru
+	
+git status - afiseaza modificarile carora nu le-ai dat commit inca
+
+git log - sunt afisate toate commit-urile + userii care le-au facut
+
+git checkout *locatie* - selectezi o alta versiune a repo-ului
+
+-------------  Ordine comenzi: -------------
+
+git init
+git add .
+git commit -m "NumeCommit"
+git branch -M main 
+git remote add origin *link GitHub*
+git push origin main -f
+
