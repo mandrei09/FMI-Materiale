@@ -1,8 +1,8 @@
 --Diagramele au fost facute cu lucidchart.
 /
 --4-----------------------------------------------------------------------------
---Implementa?i în Oracle diagrama conceptualã realizatã: defini?i toate tabelele, 
---implementând toate constrângerile de integritate necesare (chei primare, cheile 
+--Implementati in Oracle diagrama conceptuala realizata: definiti toate tabelele, 
+--implementand toate constrangerile de integritate necesare (chei primare, cheile 
 --externe etc).
 create table USERS(
     UserID integer primary key,
@@ -86,8 +86,8 @@ alter table USERS
 /
 
 --5-----------------------------------------------------------------------------
---Adãuga?i informa?ii coerente în tabelele create (minim 5 înregistrãri pentru 
---fiecare entitate independentã; minim 10 înregistrãri pentru tabela asociativã).
+--Adï¿½uga?i informa?ii coerente ï¿½n tabelele create (minim 5 ï¿½nregistrï¿½ri pentru 
+--fiecare entitate independentï¿½; minim 10 ï¿½nregistrï¿½ri pentru tabela asociativï¿½).
 
 --inserari pentru CATEGORY
 insert into CATEGORY values(1,'Netflix And Chill','In aceasta categorie vom gasi postari despre filme si seriale.');
@@ -188,9 +188,9 @@ insert into REGION values(5,'Germania','Berlin','German Street 45');
 select * from region;
 
 --6-----------------------------------------------------------------------------
---Formula?i în limbaj natural o problemã pe care sã o rezolva?i folosind un 
---subprogram stocat independent care sã utilizeze douã tipuri diferite de 
---colec?ii studiate. Apela?i subprogramul.
+--Formulati in limbaj natural o problema pe care sa o rezolvati folosind un 
+--subprogram stocat independent care sa utilizeze doua tipuri diferite de 
+--colectii studiate. Apelati subprogramul.
 
     --Sa se afiseze pentru toate postarile colaborative
     --care sunt facute de mai mult de 2 useri ID-ul, titlul si numarul de useri.
@@ -292,9 +292,9 @@ end;
 /
 
 --7-----------------------------------------------------------------------------
---Formula?i în limbaj natural o problemã pe care sã o rezolva?i folosind un 
---subprogram stocat independent care sã utilizeze 2 tipuri diferite de cursoare 
---studiate, unul dintre acestea fiind cursor parametrizat. Apela?i subprogramul.
+--Formulati in limbaj natural o problema pe care sa o rezolvati folosind un 
+--subprogram stocat independent care sa utilizeze 2 tipuri diferite de cursoare 
+--studiate, unul dintre acestea fiind cursor parametrizat. Apelati subprogramul.
 
 --    7.Dati de la tastatura un numar natural, reprezentand numarul unei optiuni:
 --      Daca optiunea este 1, sa se afiseze numele grupurilor cu un numar de participanti < 5.
@@ -377,10 +377,10 @@ end;
 
 /
 --8-----------------------------------------------------------------------------
---Formula?i în limbaj natural o problemã pe care sã o rezolva?i folosind un 
---subprogram stocat independent de tip func?ie care sã utilizeze într-o singurã 
---comandã SQL 3 dintre tabelele definite. Defini?i minim 2 excep?ii. 
---Apela?i subprogramul astfel încât sã eviden?ia?i toate cazurile tratate.
+--Formulati in limbaj natural o problema pe care sa o rezolvati folosind un 
+--subprogram stocat independent de tip functie care sa utilizeze intr-o singura 
+--comanda SQL 3 dintre tabelele definite. Definiti minim 2 exceptii. 
+--Apelati subprogramul astfel incat sa evidentiati toate cazurile tratate.
 
 --8. Afisati titlul pentru cele mai comentate postari dintr-o categorie data ca parametru.
 --Returnati prin intermediul functiei numarul de postari gasite.
@@ -465,11 +465,11 @@ end;
 /
 
 --9-----------------------------------------------------------------------------
---Formula?i în limbaj natural o problemã pe care sã o rezolva?i folosind un 
---subprogram stocat independent de tip procedurã care sã utilizeze într-o singurã 
---comandã SQL 5 dintre tabelele definite. Trata?i toate excep?iile care pot apãrea, 
---incluzând excep?iile NO_DATA_FOUND ?i TOO_MANY_ROWS. Apela?i subprogramul astfel 
---încât sã eviden?ia?i toate cazurile tratate.
+--Formulati in limbaj natural o problema pe care sa o rezolvati folosind un 
+--subprogram stocat independent de tip procedura care sa utilizeze intr-o singura 
+--comanda SQL 5 dintre tabelele definite. Tratati toate excep?iile care pot aparea, 
+--incluzand exceptiile NO_DATA_FOUND ti TOO_MANY_ROWS. Apelati subprogramul astfel 
+--incat sa evidentiati toate cazurile tratate.
 
 --9.Sa se afiseze numele, prenumele si grupul de care apartine fiecare user a carui 
 --postare are cele mai putine comentarii si apartine unei categorii specificate 
@@ -538,7 +538,7 @@ end;
 /
 
 --10----------------------------------------------------------------------------
---Defini?i un trigger de tip LMD la nivel de comandã. Declan?a?i trigger-ul.
+--Definiti un trigger de tip LMD la nivel de comanda. Declansati trigger-ul.
 --10. Trigger care nu permite crearea unui user nou intre orele 20:00-21:00.
 /
 create or replace TRIGGER ora
@@ -556,7 +556,7 @@ insert into USERS values(101,'FMI1','UNI111BUC1','fmi@1','ria12311@vi11ngood.com
 /
 
 --11----------------------------------------------------------------------------
---Defini?i un trigger de tip LMD la nivel de linie. Declan?a?i trigger-ul.
+--Definiti un trigger de tip LMD la nivel de linie. Declansati trigger-ul.
 --11.Sa nu se poata modifica titlul postarilor cu unul nou care are mai putin de 
 --3 caractere.
 /
@@ -577,7 +577,7 @@ where postid=1;
 /
 
 --12----------------------------------------------------------------------------
---Defini?i un trigger de tip LDD. Declan?a?i trigger-ul.
+--Definiti un trigger de tip LDD. Declansati trigger-ul.
 --12. Trigger ca nu permite stergerea tabelului POST.
 /
 create or replace trigger dropTrigger
@@ -594,7 +594,7 @@ DROP TABLE POST;
 /
 
 --13----------------------------------------------------------------------------
---13. Defini?i un pachet care sã con?inã toate obiectele definite în cadrul proiectului. 
+--13. Definiti un pachet care sa contina toate obiectele definite in cadrul proiectului. 
 
 /
 CREATE OR REPLACE PACKAGE proiectSGBD as
@@ -892,8 +892,8 @@ CREATE OR REPLACE PACKAGE BODY proiectSGBD AS
 /
 
 --14----------------------------------------------------------------------------
---Defini?i un pachet care sã includã tipuri de date complexe ?i obiecte necesare 
---unui flux de ac?iuni integrate, specifice bazei de date definite (minim 2 tipuri
+--Definiti un pachet care sa includa tipuri de date complexe si obiecte necesare 
+--unui flux de actiuni integrate, specifice bazei de date definite (minim 2 tipuri
 --de date, minim 2 func?ii, minim 2 proceduri). 
 
 /
