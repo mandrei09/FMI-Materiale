@@ -86,8 +86,8 @@ alter table USERS
 /
 
 --5-----------------------------------------------------------------------------
---Ad�uga?i informa?ii coerente �n tabelele create (minim 5 �nregistr�ri pentru 
---fiecare entitate independent�; minim 10 �nregistr�ri pentru tabela asociativ�).
+--Adaugati informatii coerente din tabelele create (minim 5 inregistrari pentru 
+--fiecare entitate independenta; minim 10 inregistrari pentru tabela asociatva).
 
 --inserari pentru CATEGORY
 insert into CATEGORY values(1,'Netflix And Chill','In aceasta categorie vom gasi postari despre filme si seriale.');
@@ -368,9 +368,9 @@ end f7;
 
 /
 begin
-    f7(1,2); --7, aici al doilea parametru poate fi orice, nu influenteaza.
-    f7(2,2);
-    f7(2,1);
+--    f7(1,2); --7, aici al doilea parametru poate fi orice, nu influenteaza.
+--    f7(2,2);
+--    f7(2,1);
     f7(3,2); 
 end;
 /
@@ -529,11 +529,11 @@ end f9;
 /
 begin
     --cazul 1, pentru o categorie care apare o singura data in DB.
-    --f9('Netflix And Chill');
+    f9('Netflix And Chill');
     --cazul 2, pentru o categorie care NU apare in DB.
-    --f9('Pdn');
+--    f9('Pdn');
     --cazul 3, pentru o categorie care apare DE MAI MULTE ORI in DB
-    f9('Muzica');
+--    f9('Muzica');
 end;
 /
 
